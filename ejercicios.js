@@ -10,7 +10,6 @@ const respuesta = (ejercicio1 = "") =>
 respuesta();
 respuesta('Hola Mundo');
 
-
 /* 2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados,
 Ej: miFuncion("Hola Mundo", 4) devolverá "Hola".
 */
@@ -40,25 +39,18 @@ datoArray();
 datoArray("Hola que tal", " ");
 
 /* 4) Programa una función que repita un texto X veces, Ej: miFuncion('Hola Mundo', 3)
-devolverá Hola Mundo Hola Mundo Hola Mundo.
-
-En las validaciones es bueno colocar un return para no permitir que se siga ejecutando la función
-ya que es inecesario que sigasi ya hay una respuesta */
+devolverá Hola Mundo Hola Mundo Hola Mundo */
 
 const repetirCadena = (ejercicio4 = "", repetir = undefined) => {
-    /* Validar los posibles errores que se pueden presentar ya sea por codigo o por que el usuario
-    ingreso algún dato erroneo */
+
     if (!ejercicio4) return console.warn('No ingresaste un texto');
 
     if (repetir === undefined) return console.error('No inresaste el número de veces a repetir el texto');
 
     if (repetir === 0) return console.warn("El número de veces no puede ser 0");
 
-    /* Este se utiliza en caso de que el usuario ingrese un número negativo y ya que un número negativo
-    no se puede repetir entonces toca indicar que es un error */
     if ( Math.sign(repetir) === -1) return console.error("El número de veces no puede ser negativo");
 
-    /* Se crea un bucle el cual recorra las veces que se necesita y se imprima */
     for ( let i = 1; i <= repetir; i++) console.info(`${ejercicio4}, ${i}`);
 };
 
@@ -68,47 +60,153 @@ repetirCadena("Hola");
 repetirCadena("Hola", 0);
 repetirCadena("Hola", -1);
 
+
 /* 5) Programa una función que invierta las palabras de una cadena de texto,
 Ej. miFuncion("Hola Mundo") devolverá "odnuM aloH".
 */
-const invertirCadena = ( cadena = "")  => {
 
-    if ( !cadena ) return console.warn('Es necesario ingresar texto');
-    if ( cadena === 0 ) return console.error("La información no puede ser 0");
-    if ( Math.sign(cadena) === -1 ) return console.warn('No puede ingresar números negativos');
+const inverCadena = (cadena = "") =>
+    (!cadena)
+    ? console.warn("No ingresaste una cadena de texto")
+    : console.info( cadena.split("").reverse().join(""));
 
-    // Se crea una nueva cadena ya que la idea es mostrar la cadena inicial y la invertida.
-    let nuevaCadena = "";
-
-    /* Se crea un bucle en el cual se toma la longitud de la cadena y se iguala a -1
-    posteriormente se indica */
-    for (let i = cadena.length - 1; i >= 0; i--) {
-        nuevaCadena += cadena[i];
-    }
-    return nuevaCadena;
-};
-
-let ejercicio5 = "Hola Mundo";
-// console.info(`La palabra inicial es: ${ejercicio5} y la cadena invertida es ${invertirCadena('Hola Mundo')}` );
-// invertirCadena();
-// invertirCadena("Hola");
+inverCadena();
+inverCadena("Commodo excepteur veniam culpa ipsum tempor Lorem.");
 
 /*
 6) Programa una función para contar el número de veces que se repite una palabra en un texto largo,
 Ejemplo: miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
 */
-
-const contar = (cadena = "") => {
+const contar = (cadena = "", texto="") => {
 
     if (!cadena ) return console.warn('Ingresar el texto a contar ');
-    if (cadena === undefined ) return console.warn('La informaciónes indefinida');
+    if (!texto ) return console.warn('Ingresar la palabra a evaluar');
     if ( Math.sign(cadena) === -1 ) return console.error('No puede ingresar números negativos');
 
-    let expreRegular = /mundo/ig;
-    let ejercicio6 = expreRegular.exec(cadena);
-    console.log(ejercicio6.length);
+    let i = 0, contador = 0;
+
+    while ( i !== -1 ) {
+        
+        i = cadena.indexOf(texto, i);
+
+        if ( i !== -1) {
+            i++;
+            contador++;
+        }
+
+        return console.info(` La palabra ${texto} se repite ${contador} veces `);
+    }
+
 };
 
-contar("hola mundo adios, mundo");
-contar("");
+contar("hola mundo adios, mundo, mundo y mas mundo", "mundo");
+contar("Mollit nisi esse veniam ea dolor laboris cupidatat ullamco.", "nisi");
 contar(-1);
+
+/*
+7) Programa una función que valide si una palabra o frase dada, es un palíndromo
+(que se lee igual en un sentido que en otro),
+Ej: mifuncion("Salas") devolverá true.
+*/
+
+const palindromo = ( palabra = "") => {
+    if ( !palabra ) return console.warn('No ingresaste una palabra o frase');
+
+    palabra = palabra.toLowerCase();
+    let alReves = palabra.split("").reverse().join("");
+
+    return (alReves === palabra)
+        ? console.info(`Sí es palíndromo, Palabra original ${palabra}, Palabra al revés ${alReves}`)
+        : console.warn(`La palabra o frase no es palíndomo, Palabra original ${palabra}, Palabra al revés ${alReves}`);
+};
+
+palindromo('Salas');
+palindromo('Mario');
+
+/*
+8) Programa una función que elimine cierto patrón de caracteres de un texto dado,
+Ej: miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+*/
+
+const eliminarCaracteres = ( texto = "", eliminar = "") =>
+    (!texto)
+        ? console.warn(' No ingresaste un texto')
+        : (!eliminar)
+            ? console.error("No ingresaste un textoa eliminar de caracteres")
+            : console.info(texto.replace(new RegExp(eliminar, "ig"), ""));
+
+eliminarCaracteres("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz", "xyz");
+
+
+/* 9) Programa una función que obtenga un numero aleatorio entre 501 y 600. */
+
+const numeroAleatoreo = ( valor1 = "", valor2 = "") => {
+    if (!valor1) return console.error("No ingreso el primer valor");
+    if (!valor2) return console.error("No ingreso el segundo valor");
+    if ( isNaN(valor1)) return console.error("No ingreso un número 1");
+    if ( isNaN(valor2)) return console.error("No ingreso un número 2");
+
+    if (valor1 < 501) return console.warn("El valor ingresado no es el correcto");
+    if (valor2 > 600) return console.warn("El valor ingresado no es el correcto");
+
+    let aleatorio = Math.round(Math.random()*(valor2-valor1)+valor1);
+
+    return console.info(`El rango que se tendra es ${valor1} y ${valor2}, el Número aleatorio tomado es ${aleatorio}`);
+}
+numeroAleatoreo( 501, 600);
+numeroAleatoreo( 500, 601);
+numeroAleatoreo( 500, 'Hola');
+
+/*
+10) Programa una función que reciba un número y evalúe si es capicúa o no
+(que se lee igual en un sentido que en otro),
+Ej: miFuncion(2002) devolverá true.
+*/
+
+const capicua = ( numero = "") => {
+    if (!numero) return console.error("No ha ingresado ningún número");
+    if ( isNaN(numero) ) return console.warn('No ingresaste un número');
+
+    let invertido = 0
+    let resto = numero;
+
+    do {
+        invertido = invertido * 10 + (resto % 10)
+        resto = Math.floor(resto / 10)
+    } while ( resto > 0 )
+
+    return (invertido === numero)
+        ? console.info(`Sí es capicua, Número original ${numero}, Número invertido ${invertido}`)
+        : console.warn(`El número no es capicua, Número original ${numero}, Número invertido ${invertido}`);
+};
+
+capicua();
+capicua("hola");
+capicua(2011);
+capicua(2002);
+
+
+/*
+11) Programa una función que calcule el factorial de un número
+(El factorial de un entero positivo n, se define como el producto de todos los números enteros
+positivos desde 1 hasta n), Ej. miFuncion(5) devolverá 120. */
+
+
+const factorial = (dato = "") => {
+
+    if ( !dato ) return console.error("No ha ingresado ningún número");
+    if ( isNaN(dato) ) return console.warn('No ingresaste un número');
+    if ( Math.sign(dato) === -1 ) return console.error('No puede ingresar números negativos');
+
+    let total = 1;
+
+	for ( let i = dato; i > 0; i--) {
+		total *= i;
+	}
+	return console.info( `El numero factorial de ${dato} es igual a ${total} ` );
+};
+
+factorial();
+factorial('HOla');
+factorial(-1);
+factorial(8);
