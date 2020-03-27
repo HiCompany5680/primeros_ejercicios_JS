@@ -67,3 +67,48 @@ repetirCadena();
 repetirCadena("Hola");
 repetirCadena("Hola", 0);
 repetirCadena("Hola", -1);
+
+/* 5) Programa una función que invierta las palabras de una cadena de texto,
+Ej. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+*/
+const invertirCadena = ( cadena = "")  => {
+
+    if ( !cadena ) return console.warn('Es necesario ingresar texto');
+    if ( cadena === 0 ) return console.error("La información no puede ser 0");
+    if ( Math.sign(cadena) === -1 ) return console.warn('No puede ingresar números negativos');
+
+    // Se crea una nueva cadena ya que la idea es mostrar la cadena inicial y la invertida.
+    let nuevaCadena = "";
+
+    /* Se crea un bucle en el cual se toma la longitud de la cadena y se iguala a -1
+    posteriormente se indica */
+    for (let i = cadena.length - 1; i >= 0; i--) {
+        nuevaCadena += cadena[i];
+    }
+    return nuevaCadena;
+};
+
+let ejercicio5 = "Hola Mundo";
+// console.info(`La palabra inicial es: ${ejercicio5} y la cadena invertida es ${invertirCadena('Hola Mundo')}` );
+// invertirCadena();
+// invertirCadena("Hola");
+
+/*
+6) Programa una función para contar el número de veces que se repite una palabra en un texto largo,
+Ejemplo: miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+*/
+
+const contar = (cadena = "") => {
+
+    if (!cadena ) return console.warn('Ingresar el texto a contar ');
+    if (cadena === undefined ) return console.warn('La informaciónes indefinida');
+    if ( Math.sign(cadena) === -1 ) return console.error('No puede ingresar números negativos');
+
+    let expreRegular = /mundo/ig;
+    let ejercicio6 = expreRegular.exec(cadena);
+    console.log(ejercicio6.length);
+};
+
+contar("hola mundo adios, mundo");
+contar("");
+contar(-1);
