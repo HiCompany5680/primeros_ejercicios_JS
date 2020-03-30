@@ -210,3 +210,37 @@ factorial();
 factorial('HOla');
 factorial(-1);
 factorial(8);
+
+
+/* 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, 
+Eje: miFuncion(7) devolverá true. */
+const primo = ( numero = '' ) => {
+    
+    let validar = true;
+
+    if ( !numero ) return console.error("No ha ingresado ningún número");
+    if (numero === undefined) return console.warn(" No ingresaste un numero");
+    if (typeof numero !== "number") return console.error(`El dato "${numero}" ingresado, No es un numero`);
+    if ( Math.sign(numero) === -1 ) return console.error('No puede ingresar números negativos');
+
+    /* Se crea un bucle para que recorra las veces que sean necesarias el nuumero ingresado */
+    for(let i = 2; i < numero; i++) {
+        if (numero%i === 0) {
+            validar = false;
+            return console.warn(`El numero ${numero} ingresado no es primo`);
+        }
+    }
+    if (validar === true ) {
+        return console.info(`El numero ${numero} ingresado es un Primo`);
+    }
+}
+
+primo();
+primo(1);
+primo(2);
+primo(7);
+primo('Hola');
+primo(9);
+primo(-1);
+primo(3);
+primo(4);
