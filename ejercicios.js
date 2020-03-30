@@ -244,3 +244,24 @@ primo(9);
 primo(-1);
 primo(3);
 primo(4);
+
+/* 13) Programa una función que determine si un número es par o impar, 
+Ej: miFuncion(29) devolverá Impar. */
+
+const parImpar = ( numero = "" ) => {
+    if ( !numero ) return console.error("No ha ingresado ningún número");
+    if (numero === undefined) return console.warn(" No ingresaste un numero");
+    if (typeof numero !== "number") return console.error(`El dato "${numero}" ingresado, No es un numero`);
+    if ( Math.sign(numero) === -1 ) return console.error('No puede ingresar números negativos');
+
+    let dato = (numero % 2) ? console.warn(`El numero ${numero} ingresado es Impar`) : console.info(`El numero ${numero} ingresado es Par`);
+
+    return dato;
+}
+
+parImpar();
+parImpar(2);
+parImpar('Hola');
+parImpar(10);
+parImpar(-10);
+parImpar(3);
