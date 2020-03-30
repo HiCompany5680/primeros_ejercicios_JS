@@ -265,3 +265,39 @@ parImpar('Hola');
 parImpar(10);
 parImpar(-10);
 parImpar(3);
+
+/* 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, 
+Ej: miFuncion(0,"C") devolverá 32°F. */
+
+const datosCaF = ( c = '', f  = '') => {
+
+    if ( isNaN(c) || isNaN(f) ) return console.warn('La informacion ingresada contiene texto y unicamente se aceptan numeros');
+    if ( !c && !f ) return console.error("Debes ingresar un Numero");
+
+    // Para obtener celsius
+    let cToF = c;
+    const cTemp = 'celsius';
+    let cToFahr = cToF * 9 / 5 + 32;
+    
+    // Para obtener fahrenheit
+    let fToC = f;
+    const fTemp = 'fahrenheit';
+    let fToCel = (fToC - 32) * 5 / 9;
+
+    const resultado = ( c !== '' && f === '' ) 
+                        ? console.info(` El dato ingresado es: ${cToF}\xB0C y el resultado es: ${cToFahr} en grados ${fTemp}`)
+                        : ( c === '' && f !== '' )
+                            ? console.info(` El dato ingresado es: ${fToC}\xB0F y el resultado es: ${fToCel} en grados ${cTemp}`)
+                            : console.error('NO se pueden ingresar dos datos');
+    
+    return resultado;
+       
+};
+
+datosCaF(0, 'celcius');
+datosCaF();
+datosCaF(0, 5);
+datosCaF(2,'');
+datosCaF('',3);
+datosCaF('','');
+
