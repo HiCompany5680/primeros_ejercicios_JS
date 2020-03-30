@@ -167,17 +167,17 @@ const capicua = ( numero = "") => {
     if (!numero) return console.error("No ha ingresado ningún número");
     if ( isNaN(numero) ) return console.warn('No ingresaste un número');
 
-    let invertido = 0
-    let resto = numero;
+    /* Converitr mi numero en un texto para poderlo revertir se requiere ejecutar el metodo toString() que convierte
+    eldato ingresado en una cadena de texto / String */
 
-    do {
-        invertido = invertido * 10 + (resto % 10)
-        resto = Math.floor(resto / 10)
-    } while ( resto > 0 )
+    numero = numero.toString();
 
-    return (invertido === numero)
-        ? console.info(`Sí es capicua, Número original ${numero}, Número invertido ${invertido}`)
-        : console.warn(`El número no es capicua, Número original ${numero}, Número invertido ${invertido}`);
+    let alReves = numero.split("").reverse().join("");
+
+    return (alReves === numero)
+        ? console.info(`Sí es capicua, Numero original ${numero}, Numero al revés ${alReves}`)
+        : console.warn(`El Numero no es capiculo, Numero original ${numero}, Numero al revés ${alReves}`);
+
 };
 
 capicua();
