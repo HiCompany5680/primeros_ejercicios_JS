@@ -354,4 +354,33 @@ devolverMonto('','');
 devolverMonto(10,1000);
 devolverMonto(2000, -10);
 
-/* 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020). */
+/* 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, 
+Ej: miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020). */
+
+const fechaValida = ( year = '', month = '', day = '') => {
+    
+    if ( !year || !month || !day ) return console.error("No has ingresado una fecha correcta");
+    if ( year === undefined || month === undefined || day === undefined) return console.warn(" No ingresaste una fecha");
+    if (typeof year !== "number" || typeof month !== "number" || typeof day !== "number") return console.error(`La fecha ingresada, no es correcta`);
+    if ( Math.sign(year) === -1 || Math.sign(month) === -1 || Math.sign(day) === -1 ) return console.error('No puede ingresar números negativos');
+
+    let fechaInicio = new Date(1984,4,23);
+    let fechaFinal = Date.now();
+    const transcurrido = fechaFinal - fechaInicio;
+
+    let milisecons = 31556900000;
+
+    const valorFecha = transcurrido / milisecons;
+
+    const anio = Math.floor(valorFecha);
+
+    return console.info(anio);
+}
+
+fechaValida();
+fechaValida('','','');
+fechaValida('hola', 3, 6);
+fechaValida(1984,4,23);
+fechaValida(3, 'hola', 6);
+fechaValida(3, 6, 'hola');
+fechaValida('12','5','4');
