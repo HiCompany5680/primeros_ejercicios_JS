@@ -332,9 +332,26 @@ convertirNumeros(200, 4);
 convertirNumeros(3, 'hola');
 convertirNumeros('200', 4);
 
-/* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800. */
+/* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, 
+Ej: miFuncion(1000, 20) devolverá 800. */
 
+const devolverMonto = ( valor = '', descuento = '') => {
 
+    if ( !valor || !descuento ) return console.error("No has ingresado los datos de valor y descuento");
+    if (typeof valor !== "number" || typeof descuento !== "number") return console.error(`El dato ingresado, No es un valor`);
+    if ( Math.sign(valor) === -1 || Math.sign(descuento) === -1 ) return console.error('No puede ingresar números negativos');
 
+    let resultado = (((valor*-descuento)/100)+valor);
+
+    return console.info(resultado);
+}
+
+devolverMonto();
+devolverMonto(1000, 20);
+devolverMonto('Hola',5);
+devolverMonto(100, 'hola');
+devolverMonto('','');
+devolverMonto(10,1000);
+devolverMonto(2000, -10);
 
 /* 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020). */
