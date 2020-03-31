@@ -301,3 +301,40 @@ datosCaF(2,'');
 datosCaF('',3);
 datosCaF('','');
 
+
+/* 15) Programa una función para convertir números de base binaria a decimal y viceversa, 
+Ej: miFuncion(100,2) devolverá 4 base 10. */
+const convertirNumeros = ( valor = '', unidad = '') => {
+
+    if ( !valor || !unidad ) return console.error("No has ingresado los datos de número y unidad");
+    if (valor === undefined) return console.warn(" No ingresaste un numero");
+    if (typeof unidad !== "number") return console.error(`El dato "${unidad}" ingresado, No es un numero`);
+
+    // Decimal a Binadio
+    let dToBinario  = ( valor.toString(unidad));
+
+    // Binario a Decimal
+    let btoDecimal = parseInt(valor, unidad);
+
+
+    const resultado = ( typeof valor !== 'number' )
+                        ? console.info(`El número binario ${valor}, el valor decimal es: ${btoDecimal}`)
+                        : console.info(`El número decimal ${valor}, el valor dinario es: ${dToBinario}`);
+    return resultado;
+}
+
+convertirNumeros();
+convertirNumeros("100", 2);
+convertirNumeros('', 3);
+convertirNumeros(100, 2);
+convertirNumeros(3, '');
+convertirNumeros(200, 4);
+convertirNumeros(3, 'hola');
+convertirNumeros('200', 4);
+
+/* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800. */
+
+
+
+
+/* 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020). */
