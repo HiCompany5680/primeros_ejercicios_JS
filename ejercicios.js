@@ -364,7 +364,7 @@ const fechaValida = ( year = '', month = '', day = '') => {
     if (typeof year !== "number" || typeof month !== "number" || typeof day !== "number") return console.error(`La fecha ingresada, no es correcta`);
     if ( Math.sign(year) === -1 || Math.sign(month) === -1 || Math.sign(day) === -1 ) return console.error('No puede ingresar números negativos');
 
-    let fechaInicio = new Date(1984,4,23);
+    let fechaInicio = new Date(year,month,day);
     let fechaFinal = Date.now();
     const transcurrido = fechaFinal - fechaInicio;
 
