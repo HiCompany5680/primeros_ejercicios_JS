@@ -374,7 +374,7 @@ const fechaValida = ( year = '', month = '', day = '') => {
 
     const anio = Math.floor(valorFecha);
 
-    return console.info(anio);
+    return return console.info(`Los años ingresados son: ${anio} años`);
 }
 
 fechaValida();
